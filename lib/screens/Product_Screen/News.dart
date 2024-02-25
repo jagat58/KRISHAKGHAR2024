@@ -52,7 +52,7 @@ class News extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Text(
-                        'Headline $index', // Replace with your headline
+                        'Headline $index', 
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -62,7 +62,7 @@ class News extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Text(
-                        '14 Falgun', // Replace with your date
+                        '14 Falgun', 
                         style: TextStyle(
                           fontSize: 16,
                           color: const Color.fromARGB(255, 116, 116, 116),
