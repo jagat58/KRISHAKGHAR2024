@@ -1,14 +1,11 @@
-
 import 'package:flutter/material.dart';
-import 'package:krishighar/screens/Home_screen/Home_SCREEN/ServiceHomePage.dart';
-import 'package:krishighar/screens/Home_screen/Home_SCREEN/home_page.dart';
-import 'package:krishighar/screens/Market_screen/MarketSeedScreen.dart';
 import 'package:krishighar/screens/Market_screen/makket_sell_screen/market_sell_screen.dart';
 import 'package:krishighar/screens/Market_screen/market_buy_all_screen/market_buy_all_screen.dart';
 
 class MarketTabContainerScreen extends StatefulWidget {
   @override
-  _MarketTabContainerScreenState createState() => _MarketTabContainerScreenState();
+  _MarketTabContainerScreenState createState() =>
+      _MarketTabContainerScreenState();
 }
 
 class _MarketTabContainerScreenState extends State<MarketTabContainerScreen> {
@@ -28,7 +25,7 @@ class _MarketTabContainerScreenState extends State<MarketTabContainerScreen> {
                   child: TabBarView(
                     children: [
                       BuyProductMarket(),
-                    //  MarketScreen(),
+                      //  MarketScreen(),
                       MarketSellForm(),
                     ],
                   ),
@@ -112,8 +109,9 @@ class _MarketTabContainerScreenState extends State<MarketTabContainerScreen> {
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.9,
                 child: TabBar(
-                  unselectedLabelColor: const Color.fromARGB(255, 255, 255, 255),
-                  labelColor: Color.fromARGB(221, 202, 12, 12),
+                  unselectedLabelColor:
+                      const Color.fromARGB(255, 255, 255, 255),
+                  labelColor: Color.fromARGB(221, 0, 0, 0),
                   indicatorSize: TabBarIndicatorSize.tab,
                   indicator: BoxDecoration(
                     color: Colors.white,

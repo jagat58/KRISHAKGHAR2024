@@ -1,258 +1,240 @@
+// CartScreen.dart
+
 import 'package:flutter/material.dart';
-import 'package:krishighar/screens/Market_screen/product/product_detail_screen.dart';
 import 'package:krishighar/screens/checkout/checkout.dart';
-class CartScreen extends StatelessWidget {
-  const CartScreen({super.key});
+
+class CartScreen extends StatefulWidget {
+  @override
+  _CartScreenState createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
+  Map<String, int> itemCountMap = {
+    'Seed': 0,
+    'Agroche': 0,
+    'Hardware': 0,
+  };
+
+  Map<String, double> itemPriceMap = {
+    'Seed': 10.0,
+    'Agroche': 20.0,
+    'Hardware': 30.0,
+  };
+
+  void incrementItem(String productName) {
+    setState(() {
+      if (itemCountMap.containsKey(productName)) {
+        itemCountMap[productName] = (itemCountMap[productName] ?? 0) + 1;
+      } else {
+        itemCountMap[productName] = 1;
+      }
+    });
+  }
+
+  void decrementItem(String productName) {
+    setState(() {
+      if (itemCountMap.containsKey(productName) &&
+          itemCountMap[productName]! > 0) {
+        itemCountMap[productName] = itemCountMap[productName]! - 1;
+      }
+    });
+  }
+
+  double calculateSubtotal() {
+    double subtotal = 0;
+    itemCountMap.forEach((productName, quantity) {
+      subtotal += quantity * itemPriceMap[productName]!;
+    });
+    return subtotal;
+  }
+
+  void _navigateToCheckout(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Checkout(
+          itemCountMap: itemCountMap,
+          itemPriceMap: itemPriceMap,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       body: Stack(
-          children: [
-            Padding(
-        padding: const EdgeInsets.fromLTRB(10, 40, 0, 0),
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 0, 116, 4),
+        title: Padding(
+          padding: const EdgeInsets.only(left: 100),
+          child: Text(
+            'Cart',
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
+      body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            
-            SizedBox(height: 50),
-            Expanded(
-              flex: 4,
-              child: CartItemList(),
-            ),
-            Spacer(),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(80, 0, 80, 80),
-              child: ElevatedButton(
-                
-               onPressed: () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => CheckoutScreen()),
-      );
-    },
-                child: Text('Proceed to Checkout'),
-              ),
-            ),
+            _buildItemContainer('assets/seed.jpg', 'Seed', context),
+            _buildItemContainer('assets/agroche.jpg', 'Agroche', context),
+            _buildItemContainer('assets/hardware.jpg', 'Hardware', context),
+            SizedBox(height: 20),
+            _buildPriceDetails(),
+            SizedBox(height: 20),
           ],
         ),
       ),
-            Container(
-              height: MediaQuery.of(context).size.height * 0.10,
-              width: MediaQuery.of(context).size.width,
-              color: Color.fromARGB(255, 2, 141, 7),
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                    child: CircleAvatar(
-                      radius: 50,
-                      backgroundImage: AssetImage('assets/logo.png'),
-                      backgroundColor: Colors.white,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(5, 8, 8, 8),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Row(
-                          children: [
-                            Center(
-                              child: Text(
-                                "KRISHAK",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 25,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                            SizedBox(width: 10),
-                            Center(
-                              child: Text(
-                                "GHAR",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 25,
-                                  color: Colors.yellow,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Positioned(
-              top: 10,
-              right: 10,
-              child: Container(
-                width: 30,
-                height: 30,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.red, // Example color for notification icon
-                ),
-                child: Icon(
-                  Icons.notifications,
-                  color: Colors.white,
-                  size: 25,
-                ),
-              ),
-            ),
-          ]
-       )
     );
   }
-}
 
-
-class CartItemList extends StatefulWidget {
-  @override
-  _CartItemListState createState() => _CartItemListState();
-}
-
-class _CartItemListState extends State<CartItemList> {
-  List<CartItemModel> cartItems = [
-    CartItemModel(
-        name: 'Maize',
-        price: 5.99,
-        imageUrl:
-            'https://images.pexels.com/photos/3987349/pexels-photo-3987349.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
-    CartItemModel(
-        name: 'Potato',
-        price: 3.49,
-        imageUrl:
-            'https://images.pexels.com/photos/2581537/pexels-photo-2581537.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
-    CartItemModel(
-        name: 'Sugarcane',
-        price: 7.99,
-        imageUrl:
-            'https://images.pexels.com/photos/3987271/pexels-photo-3987271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: cartItems.length,
-      itemBuilder: (context, index) {
-        return CartItem(
-            cartItem: cartItems[index],
-            onRemove: () {
-              setState(() {
-                cartItems.removeAt(index);
-              });
-            });
-      },
+  Widget _buildItemContainer(
+      String imagePath, String productName, BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: Color.fromARGB(255, 223, 221, 221),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            offset: Offset(0, 2),
+            blurRadius: 6,
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 100,
+            height: 100,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              image: DecorationImage(
+                image: AssetImage(imagePath),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          SizedBox(width: 20),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  productName,
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 5),
+                Row(
+                  children: [
+                    _buildCircularButton(
+                      Icons.remove,
+                      () => decrementItem(productName),
+                    ),
+                    Text(
+                      itemCountMap[productName].toString(),
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    _buildCircularButton(
+                      Icons.add,
+                      () => incrementItem(productName),
+                    ),
+                    SizedBox(width: 10),
+                    Text(
+                      '\$${(itemCountMap[productName]! * itemPriceMap[productName]!).toStringAsFixed(2)}',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
-}
 
-class CartItemModel {
-  final String name;
-  final double price;
-  final String imageUrl;
-
-  CartItemModel(
-      {required this.name, required this.price, required this.imageUrl});
-}
-
-class CartItem extends StatefulWidget {
-  final CartItemModel cartItem;
-  final VoidCallback onRemove;
-
-  const CartItem({required this.cartItem, required this.onRemove});
-
-  @override
-  _CartItemState createState() => _CartItemState();
-}
-
-class _CartItemState extends State<CartItem> {
-  int quantity = 1;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: Row(
-            children: [
-              Container(
-                width: 80,
-                height: 80,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color.fromARGB(255, 2, 141, 7),
+  Widget _buildPriceDetails() {
+    return Container(
+      padding: EdgeInsets.all(20),
+      margin: EdgeInsets.symmetric(horizontal: 20),
+      decoration: BoxDecoration(
+        color: const Color.fromARGB(255, 0, 116, 4),
+        borderRadius: BorderRadius.circular(8),
+        boxShadow: [
+          BoxShadow(
+            color: Color.fromARGB(255, 78, 78, 78),
+            offset: Offset(0, 10),
+            blurRadius: 15,
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Shipping Fee: \$10',
+            style: TextStyle(
+                fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+          ),
+          SizedBox(height: 10),
+          Text(
+            'Subtotal: \$${calculateSubtotal().toStringAsFixed(2)}',
+            style: TextStyle(
+                fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+          ),
+          SizedBox(height: 10),
+          Text(
+            'Total: \$${(calculateSubtotal() + 10).toStringAsFixed(2)}',
+            style: TextStyle(
+                fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+          ),
+          SizedBox(height: 20),
+          Container(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: () {
+                _navigateToCheckout(context);
+              },
+              child: Text(
+                'Proceed to Checkout',
+                style: TextStyle(
+                  color: const Color.fromARGB(
+                    255,
+                    0,
+                    116,
+                    4,
+                  ),
+                  fontWeight: FontWeight.bold,
                 ),
-                alignment: Alignment.center,
-                child: ClipOval(
-                  child: Image.network(
-                    widget.cartItem.imageUrl,
-                    width: 80,
-                    height: 80,
-                    fit: BoxFit.cover,
-                  ),
-                ),
               ),
-              SizedBox(width: 16),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(widget.cartItem.name),
-                  Text(
-                      '\Rs${(widget.cartItem.price * quantity).toStringAsFixed(2)}'),
-                ],
-              ),
-              Spacer(),
-              Row(
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.remove),
-                    onPressed: () {
-                      if (quantity > 1) {
-                        setState(() {
-                          quantity--;
-                        });
-                      }
-                    },
-                  ),
-                  Text(quantity.toString()),
-                  IconButton(
-                    icon: Icon(Icons.add),
-                    onPressed: () {
-                      setState(() {
-                        quantity++;
-                      });
-                    },
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.delete),
-                    onPressed: widget.onRemove,
-                  ),
-                ],
-              ),
-            ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCircularButton(IconData icon, VoidCallback onPressed) {
+    return GestureDetector(
+      onTap: onPressed,
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Container(
+          width: 36,
+          height: 36,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Color.fromARGB(255, 0, 0, 0),
+          ),
+          child: Icon(
+            icon,
+            color: Colors.white,
           ),
         ),
-        Container(
-          height: 8,
-          color: Colors.green,
-        ),
-      ],
+      ),
     );
   }
 }
-
-void main() {
-  runApp(MaterialApp(
-    home: CartScreen(),
-  ));
-}
-
-

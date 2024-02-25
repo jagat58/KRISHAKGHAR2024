@@ -2,6 +2,7 @@ List<Map> HomeDataList = [
   {
     'imagepath': 'assets/2.png',
     'name': 'Seed',
+    'navigateTo': '/Seeds',
   },
   {
     'imagepath': 'assets/nutratation.png',

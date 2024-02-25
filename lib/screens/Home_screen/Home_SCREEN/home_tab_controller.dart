@@ -14,13 +14,13 @@ class _HomeTabContainerScreenState extends State<HomeTabContainerScreen> {
       length: 2,
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: Color.fromARGB(255, 241, 245, 241),
+          backgroundColor: Color.fromARGB(255, 208, 208, 208),
           body: Column(
             children: [
               _buildHead(),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  padding: const EdgeInsets.all(10),
                   child: TabBarView(
                     children: [
                       HomeScreenn(),
@@ -42,13 +42,13 @@ class _HomeTabContainerScreenState extends State<HomeTabContainerScreen> {
       child: Column(
         children: [
           Container(
-            height: MediaQuery.of(context).size.height * 0.09,
+            height: MediaQuery.of(context).size.height * 0.07,
             width: MediaQuery.of(context).size.width,
             color: Color.fromARGB(255, 2, 141, 7),
             child: Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(90, 0, 8, 8),
+                  padding: const EdgeInsets.fromLTRB(100, 8, 8, 15),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -65,7 +65,7 @@ class _HomeTabContainerScreenState extends State<HomeTabContainerScreen> {
                               ),
                             ),
                           ),
-                          SizedBox(width: 8),
+                          SizedBox(width: 10),
                           Center(
                             child: Text(
                               "GHAR",
@@ -82,7 +82,7 @@ class _HomeTabContainerScreenState extends State<HomeTabContainerScreen> {
                   ),
                 ),
                 SizedBox(
-                  width: 8,
+                  width: 10,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 15.0),
@@ -90,7 +90,7 @@ class _HomeTabContainerScreenState extends State<HomeTabContainerScreen> {
                       child: Icon(
                     Icons.notifications,
                     color: Colors.white,
-                    size: 28,
+                    size: 30,
                   )),
                 ),
               ],
@@ -99,7 +99,7 @@ class _HomeTabContainerScreenState extends State<HomeTabContainerScreen> {
           Padding(
             padding: const EdgeInsets.only(bottom: 20.0),
             child: Container(
-              width: MediaQuery.of(context).size.width * 0.90,
+              width: MediaQuery.of(context).size.width * 0.84,
               decoration: BoxDecoration(
                 color: Color.fromARGB(255, 27, 171, 32),
                 borderRadius: BorderRadius.circular(25),

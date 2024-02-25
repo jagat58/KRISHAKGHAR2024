@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:krishighar/screens/Home_screen/Home_SCREEN/home_tab_controller.dart';
-import 'package:krishighar/screens/Market_screen/MarketSeedScreen.dart';
 import 'package:krishighar/screens/Market_screen/Market_tabController/market_tabScreen.dart';
 import 'package:krishighar/screens/News/news_screen.dart';
 import 'package:krishighar/screens/cart/cart_screen.dart';
@@ -19,9 +18,9 @@ class _ButtonNavbarState extends State<ButtonNavbar> {
 
   List<Widget> _screens = [
     HomeTabContainerScreen(),
-     MarketTabContainerScreen(),
+    MarketTabContainerScreen(),
 
-   // MarketScreen(),
+    // MarketScreen(),
     CartScreen(),
     NewsScreen(),
     ProfileScreen(),
@@ -36,12 +35,10 @@ class _ButtonNavbarState extends State<ButtonNavbar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: PreferredSize(
-          preferredSize: Size(MediaQuery.of(context).size.width, 0),
-          child: AppBar(backgroundColor: Color.fromARGB(255, 2, 141, 7)),
-        ),
-      
-     
+      appBar: PreferredSize(
+        preferredSize: Size(MediaQuery.of(context).size.width, 0),
+        child: AppBar(backgroundColor: Color.fromARGB(255, 2, 141, 7)),
+      ),
       body: IndexedStack(
         index: _selectedIndex,
         children: _screens,
@@ -87,10 +84,3 @@ class _ButtonNavbarState extends State<ButtonNavbar> {
     );
   }
 }
-
-
-
-
-
-
-
