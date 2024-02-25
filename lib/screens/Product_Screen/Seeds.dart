@@ -32,7 +32,7 @@ class SeedsScreen extends StatelessWidget {
             crossAxisCount: _crossAxisCount(context),
             crossAxisSpacing: 20.0,
             mainAxisSpacing: 40.0,
-            childAspectRatio: 0.8, // Adjust this value as needed
+            childAspectRatio: 0.8,
           ),
           itemBuilder: (context, index) {
             // Example product data
@@ -50,18 +50,16 @@ class SeedsScreen extends StatelessWidget {
             ];
             List<String> imageUrls = [
               'https://images.pexels.com/photos/18592820/pexels-photo-18592820/free-photo-of-a-sunflower-in-a-field-with-a-blue-sky.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-              // Add URLs for other images here
             ];
 
-            // Example ratings (to be replaced with actual ratings from different screen)
             double rating = 4.5;
 
             return _buildGridItem(
               context, // Pass BuildContext
               productName: productNames[index % productNames.length],
               imageUrl: imageUrls[index % imageUrls.length],
-              price: 'Rs. 20', // Example price
-              rating: rating, // Pass the rating to the grid item
+              price: 'Rs. 20',
+              rating: rating,
             );
           },
         ),
@@ -75,7 +73,7 @@ class SeedsScreen extends StatelessWidget {
     return count > 0 ? count : 1;
   }
 
-  Widget _buildGridItem(BuildContext context, // Add BuildContext parameter
+  Widget _buildGridItem(BuildContext context,
       {required String productName,
       required String imageUrl,
       required String price,

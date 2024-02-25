@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:krishighar/firebase_options.dart';
+import 'package:krishighar/screens/Product_Screen/News.dart';
 import 'package:krishighar/screens/Product_Screen/Seeds.dart';
 import 'package:krishighar/screens/splash_screen/custom_splash_screen/custom_view_model.dart';
 
@@ -19,9 +20,10 @@ class MyApp extends StatelessWidget {
     final CustomSplashViewModel viewModel = CustomSplashViewModel();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/Seeds',
+      initialRoute: '',
       routes: {
         '/Seeds': (context) => SeedsScreen(),
+        '/News': (context) => News(),
       },
       home: StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),

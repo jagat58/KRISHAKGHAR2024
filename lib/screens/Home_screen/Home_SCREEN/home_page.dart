@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:krishighar/screens/Home_screen/Home_SCREEN/home_screen_data.dart';
+import 'package:krishighar/screens/News/news_screen.dart';
+import 'package:krishighar/screens/Product_Screen/News.dart';
 import 'package:krishighar/screens/Product_Screen/Seeds.dart';
 
 class HomeScreenn extends StatefulWidget {
@@ -85,12 +87,22 @@ class _HomeScreennState extends State<HomeScreenn> {
                             ),
                             child: InkWell(
                               onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => SeedsScreen(),
-                                  ),
-                                );
+                                var destination;
+                                if (index == 0) {
+                                  destination = SeedsScreen();
+                                } else if (index == 1) {
+                                  destination = News();
+                                }
+                                if (destination != null) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => destination,
+                                    ),
+                                  );
+                                } else {
+                                  print('Destination is null');
+                                }
                               },
                               child: Column(
                                 children: [
