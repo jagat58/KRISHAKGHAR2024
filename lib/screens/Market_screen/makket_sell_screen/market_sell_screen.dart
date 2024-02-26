@@ -26,7 +26,7 @@ class _MarketSellFormState extends State<MarketSellForm> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onDoubleTap: () {
-        _showImagePicker();
+        // _showImagePicker();
       },
       child: SingleChildScrollView(
         child: Form(
@@ -38,23 +38,25 @@ class _MarketSellFormState extends State<MarketSellForm> {
                 style: TextStyle(fontSize: 18.0, color: Colors.black),
               ),
               SizedBox(height: 5.0),
-              DropdownButtonFormField(
-                value: selectedCategory,
-                onChanged: (value) {
-                  setState(() {
-                    selectedCategory = value as String?;
-                  });
-                },
-                items: categories.map((category) {
-                  return DropdownMenuItem(
-                    value: category,
-                    child: Text(category),
-                  );
-                }).toList(),
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Select Category',
-                    fillColor: Color.fromARGB(0, 5, 5, 5)),
+              Container(height: 60,
+                child: DropdownButtonFormField(
+                  value: selectedCategory,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedCategory = value as String?;
+                    });
+                  },
+                  items: categories.map((category) {
+                    return DropdownMenuItem(
+                      value: category,
+                      child: Text(category),
+                    );
+                  }).toList(),
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Select Category',
+                      fillColor: Color.fromARGB(0, 5, 5, 5)),
+                ),
               ),
               SizedBox(height: 11.0),
               Text(
@@ -62,15 +64,17 @@ class _MarketSellFormState extends State<MarketSellForm> {
                 style: TextStyle(fontSize: 18.0),
               ),
               SizedBox(height: 8.0),
-              TextFormField(
-                onChanged: (value) {
-                  setState(() {
-                    productName = value;
-                  });
-                },
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Enter Product Name',
+              Container(height: 55,
+                child: TextFormField(
+                  onChanged: (value) {
+                    setState(() {
+                      productName = value;
+                    });
+                  },
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'Enter Product Name',
+                  ),
                 ),
               ),
               SizedBox(height: 16.0),
@@ -85,15 +89,17 @@ class _MarketSellFormState extends State<MarketSellForm> {
                           style: TextStyle(fontSize: 18.0),
                         ),
                         SizedBox(height: 8.0),
-                        TextFormField(
-                          onChanged: (value) {
-                            setState(() {
-                              priceFrom = value;
-                            });
-                          },
-                          keyboardType: TextInputType.number,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
+                        Container(height: 55,
+                          child: TextFormField(
+                            onChanged: (value) {
+                              setState(() {
+                                priceFrom = value;
+                              });
+                            },
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                            ),
                           ),
                         ),
                       ],
@@ -110,15 +116,17 @@ class _MarketSellFormState extends State<MarketSellForm> {
                           style: TextStyle(fontSize: 18.0),
                         ),
                         SizedBox(height: 8.0),
-                        TextFormField(
-                          onChanged: (value) {
-                            setState(() {
-                              priceTo = value;
-                            });
-                          },
-                          keyboardType: TextInputType.number,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
+                        Container(height: 55,
+                          child: TextFormField(
+                            onChanged: (value) {
+                              setState(() {
+                                priceTo = value;
+                              });
+                            },
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                            ),
                           ),
                         ),
                       ],
@@ -194,7 +202,7 @@ class _MarketSellFormState extends State<MarketSellForm> {
                           firstDate: DateTime.now(),
                           lastDate: DateTime(2101),
                         );
-
+        
                         if (pickedDate != null && pickedDate != selectedDate) {
                           setState(() {
                             selectedDate = pickedDate;
@@ -240,7 +248,7 @@ class _MarketSellFormState extends State<MarketSellForm> {
                           firstDate: DateTime.now(),
                           lastDate: DateTime(2101),
                         );
-
+        
                         if (pickedDate != null && pickedDate != selectedDate) {
                           setState(() {
                             selectedDate = pickedDate;
@@ -281,76 +289,40 @@ class _MarketSellFormState extends State<MarketSellForm> {
               ),
               SizedBox(height: 16.0),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 20, 10, 10),
-                    child: Stack(
-                      children: [
-                        Container(
-                          height: 100,
-                          width: 100,
-                          decoration: BoxDecoration(
-                            image: imagePath != null
-                                ? DecorationImage(
-                                    image: FileImage(File(imagePath!)),
-                                    fit: BoxFit.cover,
-                                  )
-                                : null,
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          padding: EdgeInsets.all(10),
+                  Stack(
+                    children: [
+                      Container(
+                        height: 100,
+                        width: 100,
+                        decoration: BoxDecoration(
+                          image: imagePath != null
+                              ? DecorationImage(
+                                  image: FileImage(File(imagePath!)),
+                                  fit: BoxFit.cover,
+                                )
+                              : null,
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
-                        if (imagePath == null)
-                          Positioned.fill(
-                            child: InkWell(
-                              onTap: () {
-                                _showImagePicker();
-                              },
-                              child: Icon(
-                                Icons.camera_alt,
-                                size: 70,
-                                color: Color.fromARGB(255, 7, 12, 17),
-                              ),
+                        padding: EdgeInsets.all(10),
+                      ),
+                      if (imagePath == null)
+                        Positioned.fill(
+                          child: InkWell(
+                            onTap: () {
+                              _showImagePicker();
+                            },
+                            child: Icon(
+                              Icons.camera_alt,
+                              size: 70,
+                              color: Color.fromARGB(255, 7, 12, 17),
                             ),
                           ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 20, 10, 10),
-                    child: Stack(
-                      children: [
-                        Container(
-                          height: 100,
-                          width: 100,
-                          decoration: BoxDecoration(
-                            image: imagePath != null
-                                ? DecorationImage(
-                                    image: FileImage(File(imagePath!)),
-                                    fit: BoxFit.cover,
-                                  )
-                                : null,
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          padding: EdgeInsets.all(10),
                         ),
-                        if (imagePath == null)
-                          Positioned.fill(
-                            child: InkWell(
-                              onTap: () {
-                                _showImagePicker();
-                              },
-                              child: Icon(
-                                Icons.camera_alt,
-                                size: 70,
-                                color: Color.fromARGB(255, 7, 12, 17),
-                              ),
-                            ),
-                          ),
-                      ],
-                    ),
+                    ],
                   ),
                 ],
               ),
