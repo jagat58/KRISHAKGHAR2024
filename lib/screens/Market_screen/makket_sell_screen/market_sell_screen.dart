@@ -38,23 +38,25 @@ class _MarketSellFormState extends State<MarketSellForm> {
                 style: TextStyle(fontSize: 18.0, color: Colors.black),
               ),
               SizedBox(height: 5.0),
-              DropdownButtonFormField(
-                value: selectedCategory,
-                onChanged: (value) {
-                  setState(() {
-                    selectedCategory = value as String?;
-                  });
-                },
-                items: categories.map((category) {
-                  return DropdownMenuItem(
-                    value: category,
-                    child: Text(category),
-                  );
-                }).toList(),
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Select Category',
-                    fillColor: Color.fromARGB(0, 5, 5, 5)),
+              Container(height: 60,
+                child: DropdownButtonFormField(
+                  value: selectedCategory,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedCategory = value as String?;
+                    });
+                  },
+                  items: categories.map((category) {
+                    return DropdownMenuItem(
+                      value: category,
+                      child: Text(category),
+                    );
+                  }).toList(),
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Select Category',
+                      fillColor: Color.fromARGB(0, 5, 5, 5)),
+                ),
               ),
               SizedBox(height: 11.0),
               Text(
@@ -62,15 +64,17 @@ class _MarketSellFormState extends State<MarketSellForm> {
                 style: TextStyle(fontSize: 18.0),
               ),
               SizedBox(height: 8.0),
-              TextFormField(
-                onChanged: (value) {
-                  setState(() {
-                    productName = value;
-                  });
-                },
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Enter Product Name',
+              Container(height: 55,
+                child: TextFormField(
+                  onChanged: (value) {
+                    setState(() {
+                      productName = value;
+                    });
+                  },
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'Enter Product Name',
+                  ),
                 ),
               ),
               SizedBox(height: 16.0),
@@ -85,15 +89,17 @@ class _MarketSellFormState extends State<MarketSellForm> {
                           style: TextStyle(fontSize: 18.0),
                         ),
                         SizedBox(height: 8.0),
-                        TextFormField(
-                          onChanged: (value) {
-                            setState(() {
-                              priceFrom = value;
-                            });
-                          },
-                          keyboardType: TextInputType.number,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
+                        Container(height: 55,
+                          child: TextFormField(
+                            onChanged: (value) {
+                              setState(() {
+                                priceFrom = value;
+                              });
+                            },
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                            ),
                           ),
                         ),
                       ],
@@ -110,15 +116,17 @@ class _MarketSellFormState extends State<MarketSellForm> {
                           style: TextStyle(fontSize: 18.0),
                         ),
                         SizedBox(height: 8.0),
-                        TextFormField(
-                          onChanged: (value) {
-                            setState(() {
-                              priceTo = value;
-                            });
-                          },
-                          keyboardType: TextInputType.number,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
+                        Container(height: 55,
+                          child: TextFormField(
+                            onChanged: (value) {
+                              setState(() {
+                                priceTo = value;
+                              });
+                            },
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                            ),
                           ),
                         ),
                       ],
@@ -194,7 +202,7 @@ class _MarketSellFormState extends State<MarketSellForm> {
                           firstDate: DateTime.now(),
                           lastDate: DateTime(2101),
                         );
-
+        
                         if (pickedDate != null && pickedDate != selectedDate) {
                           setState(() {
                             selectedDate = pickedDate;
@@ -240,7 +248,7 @@ class _MarketSellFormState extends State<MarketSellForm> {
                           firstDate: DateTime.now(),
                           lastDate: DateTime(2101),
                         );
-
+        
                         if (pickedDate != null && pickedDate != selectedDate) {
                           setState(() {
                             selectedDate = pickedDate;
