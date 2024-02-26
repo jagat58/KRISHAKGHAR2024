@@ -43,6 +43,11 @@ dependencies:
   firebase: ^9.0.3
   firebase_core: ^2.25.3
   image_picker: ^1.0.7
+  google_sign_in: ^6.2.1
+  get: ^4.6.1 
+  cloud_firestore: ^4.15.5
+  flutter_easyloading: ^3.0.5
+  firebase_messaging: ^14.7.16
 
 dev_dependencies:
   flutter_test:

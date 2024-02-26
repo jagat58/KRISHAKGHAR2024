@@ -26,7 +26,7 @@ class _MarketSellFormState extends State<MarketSellForm> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onDoubleTap: () {
-        _showImagePicker();
+        // _showImagePicker();
       },
       child: SingleChildScrollView(
         child: Form(
@@ -281,76 +281,40 @@ class _MarketSellFormState extends State<MarketSellForm> {
               ),
               SizedBox(height: 16.0),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 20, 10, 10),
-                    child: Stack(
-                      children: [
-                        Container(
-                          height: 100,
-                          width: 100,
-                          decoration: BoxDecoration(
-                            image: imagePath != null
-                                ? DecorationImage(
-                                    image: FileImage(File(imagePath!)),
-                                    fit: BoxFit.cover,
-                                  )
-                                : null,
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          padding: EdgeInsets.all(10),
+                  Stack(
+                    children: [
+                      Container(
+                        height: 100,
+                        width: 100,
+                        decoration: BoxDecoration(
+                          image: imagePath != null
+                              ? DecorationImage(
+                                  image: FileImage(File(imagePath!)),
+                                  fit: BoxFit.cover,
+                                )
+                              : null,
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
-                        if (imagePath == null)
-                          Positioned.fill(
-                            child: InkWell(
-                              onTap: () {
-                                _showImagePicker();
-                              },
-                              child: Icon(
-                                Icons.camera_alt,
-                                size: 70,
-                                color: Color.fromARGB(255, 7, 12, 17),
-                              ),
+                        padding: EdgeInsets.all(10),
+                      ),
+                      if (imagePath == null)
+                        Positioned.fill(
+                          child: InkWell(
+                            onTap: () {
+                              _showImagePicker();
+                            },
+                            child: Icon(
+                              Icons.camera_alt,
+                              size: 70,
+                              color: Color.fromARGB(255, 7, 12, 17),
                             ),
                           ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 20, 10, 10),
-                    child: Stack(
-                      children: [
-                        Container(
-                          height: 100,
-                          width: 100,
-                          decoration: BoxDecoration(
-                            image: imagePath != null
-                                ? DecorationImage(
-                                    image: FileImage(File(imagePath!)),
-                                    fit: BoxFit.cover,
-                                  )
-                                : null,
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          padding: EdgeInsets.all(10),
                         ),
-                        if (imagePath == null)
-                          Positioned.fill(
-                            child: InkWell(
-                              onTap: () {
-                                _showImagePicker();
-                              },
-                              child: Icon(
-                                Icons.camera_alt,
-                                size: 70,
-                                color: Color.fromARGB(255, 7, 12, 17),
-                              ),
-                            ),
-                          ),
-                      ],
-                    ),
+                    ],
                   ),
                 ],
               ),

@@ -150,8 +150,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         onPressed: addToCart,
                         child: Text('Add to Cart'),
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.green,
-                          onPrimary: Colors.white,
+                          foregroundColor: Colors.white, backgroundColor: Colors.green,
                           minimumSize: Size(120, 50),
                         ),
                       ),

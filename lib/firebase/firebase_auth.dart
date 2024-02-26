@@ -9,15 +9,18 @@ class FireBaseAuthService {
     await auth.createUserWithEmailAndPassword(email: email, password: password);
   }
 
-  void signOut() async {
+  signOut() async {
     await auth.signOut();
   }
 
   Future<void>signIn(String email, String password) async {
-    try {
+  
       await auth.signInWithEmailAndPassword(email: email, password: password);
-    } on FirebaseAuthException catch (error) {
-      print("the error is $error");
-    }
+   
+  }
+
+
+  forgetPassword(String email) async {
+    await auth.sendPasswordResetEmail(email: email);
   }
 }

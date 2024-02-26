@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:krishighar/firebase/firebase_auth.dart';
 import 'package:krishighar/screens/authintic/login_screen.dart';
 import 'package:krishighar/screens/profile/AboutProfile.dart';
 
@@ -488,8 +491,14 @@ class _HomePageState extends State<ProfileScreen> {
                                 width: 10,
                               ),
                               InkWell(
-                                onTap: () {
-                                  Navigator.push(context,MaterialPageRoute(builder: (_)=>LoginScreen()));
+                                onTap: ()async {
+                                  // GoogleSignIn googleSignIn =GoogleSignIn();
+                                 await FireBaseAuthService().signOut();
+                                //  Navigator.push(context, MaterialPageRo)
+                                  Get.offAll(()=>LoginScreen());
+
+
+                                 // Navigator.push(context,MaterialPageRoute(builder: (_)=>LoginScreen()));
                                 },
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,

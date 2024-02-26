@@ -43,6 +43,7 @@ class _MarketTabContainerScreenState extends State<MarketTabContainerScreen> {
 
   Widget _buildHead() {
     return Container(
+      
       color: Color.fromARGB(255, 2, 141, 7),
       child: Column(
         children: [
@@ -105,15 +106,19 @@ class _MarketTabContainerScreenState extends State<MarketTabContainerScreen> {
             padding: const EdgeInsets.only(bottom: 20.0),
             child: Container(
               width: MediaQuery.of(context).size.width * 0.9,
+
               decoration: BoxDecoration(
+                
                 color: Color.fromARGB(255, 27, 171, 32),
                 borderRadius: BorderRadius.circular(25),
               ),
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.9,
                 child: TabBar(
+                   dividerColor: Color.fromARGB(255, 2, 141, 7),
+                  indicatorColor: Colors.black,
                   unselectedLabelColor: const Color.fromARGB(255, 255, 255, 255),
-                  labelColor: Color.fromARGB(221, 202, 12, 12),
+                  labelColor: Colors.black,
                   indicatorSize: TabBarIndicatorSize.tab,
                   indicator: BoxDecoration(
                     color: Colors.white,

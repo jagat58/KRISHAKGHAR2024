@@ -107,6 +107,8 @@ class _HomeTabContainerScreenState extends State<HomeTabContainerScreen> {
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.9,
                 child: TabBar(
+                  dividerColor: Color.fromARGB(255, 2, 141, 7),
+                  indicatorColor: Colors.black,
                   unselectedLabelColor: Colors.white,
                   labelColor: Colors.black87,
                   indicatorSize: TabBarIndicatorSize.tab,
