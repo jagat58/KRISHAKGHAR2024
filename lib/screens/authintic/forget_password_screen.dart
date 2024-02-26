@@ -188,7 +188,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                             }
                           },
                           style: ElevatedButton.styleFrom(
-                            primary: Color.fromARGB(255, 2, 141, 7),
+                            backgroundColor: Color.fromARGB(255, 2, 141, 7),
                           ),
                           child: Text(
                             'Reset Password',

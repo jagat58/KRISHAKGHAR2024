@@ -153,7 +153,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
         );
       },
       style: ElevatedButton.styleFrom(
-        primary: Colors.green,
+        backgroundColor: Colors.green,
       ),
       child: Text(
         "Submit",
