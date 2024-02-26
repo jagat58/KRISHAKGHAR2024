@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:krishighar/firebase/firebase_auth.dart';
+import 'package:krishighar/screens/authintic/login_screen.dart';
 import 'package:krishighar/screens/authintic/verifycation_screen.dart';
 // import 'package:keshan/screens/auth_ui/login_page.dart';
 
@@ -41,10 +43,10 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                           controller: _emailOrPhoneController,
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
-                            hintText: "Email or Phone Number",
+                            hintText: "Email The email ",
                             hintStyle: TextStyle(
                                 color: Color.fromARGB(255, 199, 195, 195)),
-                            labelText: 'Email or Phone Number',
+                            labelText: 'Email The email',
                             prefixIcon: Icon(Icons.email, color: Colors.black),
                             border: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -76,119 +78,19 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                             return null;
                           },
                         ),
-                        SizedBox(height: 12),
-                        TextFormField(
-                          controller: _passwordController,
-                          cursorColor: Color.fromARGB(255, 250, 64, 7),
-                          keyboardType: TextInputType.visiblePassword,
-                          obscureText: !isPasswordVisible,
-                          decoration: InputDecoration(
-                            hintText: "Password",
-                            labelText: 'Password',
-                            hintStyle: TextStyle(
-                                color: Color.fromARGB(255, 199, 195, 195)),
-                            prefixIcon: Icon(Icons.password, color: Colors.black),
-                            suffixIcon: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  isPasswordVisible = !isPasswordVisible;
-                                });
-                              },
-                              child: Icon(
-                                isPasswordVisible
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                                color: Colors.black,
-                              ),
-                            ),
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            fillColor: Colors.white.withOpacity(0.5),
-                            filled: true,
-                            labelStyle: TextStyle(color: Colors.black),
-                            errorStyle: TextStyle(
-                                color: Color.fromARGB(255, 239, 17, 17)),
-                          ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter a password';
-                            }
-                            if (!isStrongPassword(value)) {
-                              return 'Password must be at least 8 characters long and contain a mix of uppercase, lowercase, and digits';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(height: 12),
-                        TextFormField(
-                          controller: _confirmPasswordController,
-                          cursorColor: Color.fromARGB(255, 250, 64, 7),
-                          keyboardType: TextInputType.visiblePassword,
-                          obscureText: !isPasswordVisible,
-                          decoration: InputDecoration(
-                            hintText: "Confirm Password",
-                            labelText: 'Confirm Password',
-                            prefixIcon: Icon(Icons.password, color: Colors.black),
-                            suffixIcon: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  isPasswordVisible = !isPasswordVisible;
-                                });
-                              },
-                              child: Icon(
-                                isPasswordVisible
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                                color: Colors.black,
-                              ),
-                            ),
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            fillColor: Colors.white.withOpacity(0.5),
-                            filled: true,
-                            labelStyle: TextStyle(color: Colors.black),
-                            errorStyle: TextStyle(
-                                color: Color.fromARGB(255, 239, 17, 17)),
-                          ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter the confirm password';
-                            }
-                            if (value != _passwordController.text) {
-                              return 'Passwords do not match';
-                            }
-                            return null;
-                          },
-                        ),
+                       
                         SizedBox(height: 30),
                         ElevatedButton(
                           onPressed: () {
-                            if (_formKey.currentState?.validate() == true) {
+                            if (
+                              
+                              _formKey.currentState?.validate() == true) {
+                                FireBaseAuthService().forgetPassword(_emailOrPhoneController!.text);
                               _showSuccessSnackBar(context);
                             }
                           },
                           style: ElevatedButton.styleFrom(
-                            primary: Color.fromARGB(255, 2, 141, 7),
+                            backgroundColor: Color.fromARGB(255, 2, 141, 7),
                           ),
                           child: Text(
                             'Reset Password',
@@ -247,15 +149,15 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
   void _showSuccessSnackBar(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('Verification code sent!!'),
-        duration: Duration(seconds: 2),
+        content: Text('Please check your email'),
+        duration: Duration(seconds:3 ),
       ),
     );
 
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(Duration(seconds: 3), () {
       Navigator.of(context).pop();
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => VerificationScreen()),
+        MaterialPageRoute(builder: (context) => LoginScreen()),
       );
     });
   }

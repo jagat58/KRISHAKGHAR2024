@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:krishighar/screens/Home_screen/Education/Education.dart';
 import 'package:krishighar/screens/Home_screen/Home_SCREEN/home_screen_data.dart';
+
+
+import 'package:krishighar/screens/Market_screen/product/Agro_chemical.dart';
+import 'package:krishighar/screens/Market_screen/product/Nutrition.dart';
+import 'package:krishighar/screens/Market_screen/product/hardware.dart';
 import 'package:krishighar/screens/Market_screen/product/seeds.dart';
 
 class HomeScreenn extends StatefulWidget {
@@ -60,10 +65,10 @@ class _HomeScreennState extends State<HomeScreenn> {
                 ),
               ),
             ),
-            SizedBox(height:2.0),
+            SizedBox(height: 2.0),
             SingleChildScrollView(
               child: SizedBox(
-                height:320,
+                height: 320,
                 child: GridView.builder(
                   physics: NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -93,9 +98,9 @@ class _HomeScreennState extends State<HomeScreenn> {
                                 ),
                               ],
                             ),
-
                             child: InkWell(
                               onTap: () {
+
                                 
                                 switch (index) {
                                   case 0:
@@ -121,11 +126,73 @@ class _HomeScreennState extends State<HomeScreenn> {
                                     // Handle invalid index or do nothing
                                     break;
                                 }
-                              
+       
+                                switch (_currentIndex) {
+                                  case 0:
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => Seeds()));
+                                  case 1:
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => Nutrition()));
+                                  case 2:
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => Hardware()));
+                                  case 3:
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => Agrochemical()));
+                                  case 4:
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => Agrochemical()));
+                                  case 5:
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => Seeds()));
+                                  case 6:
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => Seeds()));
+                                  case 7:
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => Seeds()));
+                                  case 8:
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => Seeds()));
+                                  case 9:
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => Seeds()));
+                                  case 10:
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => Seeds()));
+                                  case 11:
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => Seeds()));
+                                }
                                 // Navigator.push(
                                 //     context,
                                 //     MaterialPageRoute(
-                                //         builder: (_) => ListPart(
+                                //         builder: (_) =>  HomeDataList(
                                 //               currentpage: index,
                                 //             )));
                               },
@@ -163,20 +230,6 @@ class _HomeScreennState extends State<HomeScreenn> {
                 ),
               ),
             ),
-
-            // Expanded(
-            //   // child: CategoryGrid(
-            //   //   categoryNames: [
-            //   //     "Seeds",
-            //   //     "Nutrition",
-            //   //     "Hardware",
-            //   //     "Agrochemical",
-            //   //     "organicfertilizer",
-            //   //     "Education",
-            //   //   ],
-
-            //   // ),
-            // ),
           ],
         ),
       ),

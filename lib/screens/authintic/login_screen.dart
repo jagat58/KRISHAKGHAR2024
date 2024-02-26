@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:get/get.dart';
 import 'package:krishighar/firebase/firebase_auth.dart';
+import 'package:krishighar/main.dart';
 import 'package:krishighar/screens/Home_screen/butto_nav_bar.dart';
 import 'package:krishighar/screens/authintic/Registation_screen.dart';
 import 'package:krishighar/screens/authintic/forget_password_screen.dart';
+import '../../controller/google_sign_in_controller.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -13,11 +16,20 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<LoginScreen> {
+  final GoogleSignInController _googleSignInController =
+      Get.put(GoogleSignInController());
   bool isPasswordVisible = false;
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _emailOrPhoneController = TextEditingController();
+  TextEditingController? _passwordController;
+  TextEditingController? _emailOrPhoneController;
   String? _emailOrPhoneError;
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    _emailOrPhoneController = TextEditingController();
+    _passwordController = TextEditingController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -138,8 +150,17 @@ class _SignInScreenState extends State<LoginScreen> {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (_) =>
-                                                ForgetPasswordPage()));
+                                             builder: (_) =>
+                                                 ForgetPasswordPage()));
+
+                                    
+
+                                    // FireBaseAuthService().forgetPassword(_emailOrPhoneController!.text);
+                                    // Navigator.push(
+                                    //     context,
+                                    //     MaterialPageRoute(
+                                    //         builder: (_) =>
+                                    //             ForgetPasswordPage()));
                                   },
                                   child: Text(
                                     'Forget password ?',
@@ -162,14 +183,37 @@ class _SignInScreenState extends State<LoginScreen> {
                                     borderRadius: BorderRadius.circular(17),
                                   ),
                                   child: TextButton(
-                                    onPressed: () {
-                                      // FireBaseAuthService().signIn(
-                                      //     _emailOrPhoneController.text,
-                                      //     _passwordController.text);
-                                      Navigator.push(
+                                    onPressed: () async{
+                                      try{
+                                         if (_emailOrPhoneController?.text !=
+                                              null &&
+                                          _passwordController?.text != null) {
+                                       await FireBaseAuthService().signIn(
+                                          _emailOrPhoneController!.text,
+                                          _passwordController!.text,
+                                        ).then((value) {
+
+Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (_) => ButtonNavbar()));
+                                            builder: (_) => ButtonNavbar(),
+                                          ),
+                                        );
+
+                                        });
+                                        
+                                      }
+
+                                      
+
+                                      }
+
+                                      catch (e){
+
+                                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("${e.toString()}"),));
+
+                                      }
+                                     
                                     },
                                     child: Text(
                                       "LOGIN",
@@ -198,7 +242,8 @@ class _SignInScreenState extends State<LoginScreen> {
                                 ],
                               ),
                               Padding(
-                                padding: const EdgeInsets.fromLTRB(118, 5, 20, 20),
+                                padding:
+                                    const EdgeInsets.fromLTRB(118, 5, 20, 20),
                                 child: Row(
                                   children: [
                                     CircleAvatar(
@@ -210,12 +255,18 @@ class _SignInScreenState extends State<LoginScreen> {
                                         color: Colors.white,
                                       ),
                                     ),
-                                    SizedBox(width: 20),
-                                    CircleAvatar(
-                                      radius: 23,
-                                      backgroundColor: Colors.red,
-                                      child: Image.asset(
-                                        'assets/go.png', // Replace with your Google icon asset
+                                    SizedBox(width: 30),
+                                 
+                                    InkWell(
+                                      onTap: () {
+                                        _googleSignInController.signInWithGoogle();
+                                      },
+                                      child: CircleAvatar(
+                                        radius: 23,
+                                        backgroundColor: Colors.red,
+                                        child: Image.asset(
+                                          'assets/go.png', // Replace with your Google icon asset
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -296,31 +347,31 @@ class _SignInScreenState extends State<LoginScreen> {
                         children: [
                           Center(
                               child: Text(
-                                "WELCOME !",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 26,
-                                    color: Colors.white),
-                              )),
+                            "WELCOME !",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 26,
+                                color: Colors.white),
+                          )),
                           Row(
                             children: [
                               Center(
                                   child: Text(
-                                    "Login To",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white),
-                                  )),
+                                "Login To",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                              )),
                               SizedBox(
                                 width: 9,
                               ),
                               Center(
                                   child: Text(
-                                    "Krishak Ghar",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.yellow),
-                                  )),
+                                "Krishak Ghar",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.yellow),
+                              )),
                             ],
                           ),
                         ],
