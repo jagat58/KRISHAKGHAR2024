@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:krishighar/screens/Home_screen/Education/Education.dart';
 import 'package:krishighar/screens/Home_screen/Home_SCREEN/home_screen_data.dart';
+import 'package:krishighar/screens/Market_screen/product/seeds.dart';
 
 class HomeScreenn extends StatefulWidget {
   @override
@@ -94,6 +96,32 @@ class _HomeScreennState extends State<HomeScreenn> {
 
                             child: InkWell(
                               onTap: () {
+                                
+                                switch (index) {
+                                  case 0:
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => const Seeds()
+                                      ),
+                                    );
+                                    break;
+                                  // case 1:
+                                  //   Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //       builder: (_) => DetailsPart(
+                                  //         currentpage: index,
+                                  //       ),
+                                  //     ),
+                                  //   );
+                                    // break;
+                                  // Add more cases as needed for additional screens
+                                  default:
+                                    // Handle invalid index or do nothing
+                                    break;
+                                }
+                              
                                 // Navigator.push(
                                 //     context,
                                 //     MaterialPageRoute(
