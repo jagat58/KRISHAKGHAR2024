@@ -62,7 +62,11 @@ class News extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Text(
+<<<<<<< HEAD
                         '14 Falgun', 
+=======
+                        '14 Falgun',
+>>>>>>> bdae8f0 (Updating Code with Admin Dashboard)
                         style: TextStyle(
                           fontSize: 16,
                           color: const Color.fromARGB(255, 116, 116, 116),
