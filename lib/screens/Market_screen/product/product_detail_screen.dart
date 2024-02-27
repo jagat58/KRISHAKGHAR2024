@@ -1,29 +1,19 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: ProductDetailsScreen(
-        productName: 'Product',
-        productPrice: '10.00',
-      ),
-    );
-  }
-}
+import 'package:krishighar/screens/cart/cart_screen.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   final String productName;
   final String productPrice;
+  final List<String> imageUrls;
+  final double rating;
 
   const ProductDetailsScreen({
     Key? key,
     required this.productName,
     required this.productPrice,
+    required this.imageUrls,
+    required this.rating,
   }) : super(key: key);
 
   @override
@@ -34,24 +24,19 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   int quantity = 1;
 
   void addToCart() {
+    // Assuming CartItem has been defined properly
     CartItem cartItem = CartItem(
       productName: widget.productName,
       productPrice: widget.productPrice,
       quantity: quantity,
     );
 
-    // Add the item to the global cart list
-    globalCartItems.add(cartItem);
-
-    // Show a snackbar or navigate to a confirmation screen if needed
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Item added to cart'),
-        duration: Duration(seconds: 2),
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => CartScreen(cartItem: cartItem),
       ),
     );
-
-    print("Item added to cart: ${cartItem.productName}");
   }
 
   Widget _buildQuantitySelector() {
@@ -107,17 +92,29 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              height: 200,
-              color: Colors.grey[300],
-              child: Center(
-                child: Text(
-                  'Image ',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+            CarouselSlider(
+              items: widget.imageUrls.map((imageUrl) {
+                return Container(
+                  width: MediaQuery.of(context).size.width,
+                  margin: EdgeInsets.symmetric(horizontal: 5.0),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[300],
                   ),
-                ),
+                  child: Image.network(
+                    imageUrl,
+                    fit: BoxFit.cover,
+                  ),
+                );
+              }).toList(),
+              options: CarouselOptions(
+                height: 200.0,
+                enlargeCenterPage: true,
+                autoPlay: true,
+                aspectRatio: 16 / 9,
+                autoPlayCurve: Curves.fastOutSlowIn,
+                enableInfiniteScroll: true,
+                autoPlayAnimationDuration: Duration(milliseconds: 800),
+                viewportFraction: 0.8,
               ),
             ),
             Padding(
@@ -200,47 +197,4 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
       ),
     );
   }
-}
-
-// Global list to store cart items
-List<CartItem> globalCartItems = [];
-
-class CartScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    print("Building CartScreen");
-
-    // Print the number of items in the cart
-    print("Number of Cart Items: ${globalCartItems.length}");
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Shopping Cart'),
-      ),
-      body: ListView.builder(
-        itemCount: globalCartItems.length,
-        itemBuilder: (context, index) {
-          print("Building Cart Item $index");
-
-          return ListTile(
-            title: Text(globalCartItems[index].productName),
-            subtitle: Text('\$${globalCartItems[index].productPrice}'),
-            trailing: Text('Quantity: ${globalCartItems[index].quantity}'),
-          );
-        },
-      ),
-    );
-  }
-}
-
-class CartItem {
-  final String productName;
-  final String productPrice;
-  final int quantity;
-
-  CartItem({
-    required this.productName,
-    required this.productPrice,
-    required this.quantity,
-  });
 }

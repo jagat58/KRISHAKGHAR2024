@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:krishighar/screens/Home_screen/Home_SCREEN/home_screen_data.dart';
-import 'package:krishighar/screens/News/news_screen.dart';
 import 'package:krishighar/screens/Product_Screen/News.dart';
 import 'package:krishighar/screens/Product_Screen/Seeds.dart';
 
@@ -77,11 +76,11 @@ class _HomeScreennState extends State<HomeScreenn> {
                               borderRadius: BorderRadius.circular(19),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Color.fromARGB(255, 187, 186, 186)
+                                  color: Color.fromARGB(255, 110, 110, 110)
                                       .withOpacity(0.5),
-                                  spreadRadius: 5,
+                                  spreadRadius: 2,
                                   blurRadius: 20,
-                                  offset: Offset(5, 5),
+                                  offset: Offset(0, 5),
                                 ),
                               ],
                             ),
