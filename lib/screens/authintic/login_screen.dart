@@ -150,10 +150,8 @@ class _SignInScreenState extends State<LoginScreen> {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                             builder: (_) =>
-                                                 ForgetPasswordPage()));
-
-                                    
+                                            builder: (_) =>
+                                                ForgetPasswordPage()));
 
                                     // FireBaseAuthService().forgetPassword(_emailOrPhoneController!.text);
                                     // Navigator.push(
@@ -183,37 +181,31 @@ class _SignInScreenState extends State<LoginScreen> {
                                     borderRadius: BorderRadius.circular(17),
                                   ),
                                   child: TextButton(
-                                    onPressed: () async{
-                                      try{
-                                         if (_emailOrPhoneController?.text !=
-                                              null &&
-                                          _passwordController?.text != null) {
-                                       await FireBaseAuthService().signIn(
-                                          _emailOrPhoneController!.text,
-                                          _passwordController!.text,
-                                        ).then((value) {
-
-Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (_) => ButtonNavbar(),
-                                          ),
-                                        );
-
-                                        });
-                                        
+                                    onPressed: () async {
+                                      try {
+                                        if (_emailOrPhoneController?.text !=
+                                                null &&
+                                            _passwordController?.text != null) {
+                                          await FireBaseAuthService()
+                                              .signIn(
+                                            _emailOrPhoneController!.text,
+                                            _passwordController!.text,
+                                          )
+                                              .then((value) {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (_) => ButtonNavbar(),
+                                              ),
+                                            );
+                                          });
+                                        }
+                                      } catch (e) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(SnackBar(
+                                          content: Text("${e.toString()}"),
+                                        ));
                                       }
-
-                                      
-
-                                      }
-
-                                      catch (e){
-
-                                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("${e.toString()}"),));
-
-                                      }
-                                     
                                     },
                                     child: Text(
                                       "LOGIN",
@@ -256,10 +248,10 @@ Navigator.push(
                                       ),
                                     ),
                                     SizedBox(width: 30),
-                                 
                                     InkWell(
                                       onTap: () {
-                                        _googleSignInController.signInWithGoogle();
+                                        _googleSignInController
+                                            .signInWithGoogle();
                                       },
                                       child: CircleAvatar(
                                         radius: 23,

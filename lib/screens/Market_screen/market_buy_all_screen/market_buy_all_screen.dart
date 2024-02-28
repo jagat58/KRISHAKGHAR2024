@@ -8,6 +8,8 @@ class BuyProductMarket extends StatelessWidget {
     'Organic',
     'Tech',
     'Agrochemical',
+    'fruit',
+    'vegetables',
   ];
 
   final List<String> imagePaths = [
@@ -17,6 +19,8 @@ class BuyProductMarket extends StatelessWidget {
     'assets/organic.jpeg',
     'assets/tech.jpeg',
     'assets/agroche.jpeg',
+     'assets/fru.png',
+    'assets/veg.png',
   ];
 
   BuyProductMarket({Key? key}) : super(key: key);

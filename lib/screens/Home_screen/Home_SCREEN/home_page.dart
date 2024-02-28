@@ -6,6 +6,11 @@ import 'package:krishighar/screens/Market_screen/product/Nutrition.dart';
 import 'package:krishighar/screens/Market_screen/product/hardware.dart';
 import 'package:krishighar/screens/Market_screen/product/seeds.dart';
 
+import '../../../Widgets/banner_widgets.dart';
+import '../../../Widgets/seed_widgrts.dart';
+import '../../Market_screen/product/Insecticide.dart';
+import '../../Market_screen/product/Organicfertilizer.dart';
+
 class HomeScreenn extends StatefulWidget {
   @override
   _HomeScreennState createState() => _HomeScreennState();
@@ -13,223 +18,177 @@ class HomeScreenn extends StatefulWidget {
 
 class _HomeScreennState extends State<HomeScreenn> {
   int _currentIndex = 0;
-  List<String> _bannerImages = [
-    'assets/banner1.jpg',
-    'assets/banner2.jpg',
-    'assets/banner3.jpg'
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-
-    // Timer.periodic(Duration(seconds: 150), (timer) {
-    //   setState(() {
-    //     _currentIndex = (_currentIndex + 1) % _bannerImages.length;
-    //   });
-    // });
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color.fromARGB(255, 241, 245, 241),
+        backgroundColor: Color.fromARGB(255, 208, 208, 208),
         resizeToAvoidBottomInset: false,
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // SizedBox(height: 8.0),
-            _buildBannerRow(),
-            SizedBox(height: 8.0),
-            Padding(
-              padding: EdgeInsets.fromLTRB(20, 5, 15, 10),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Color.fromARGB(
-                      255, 227, 227, 227), // Background color of the rectangle
-                  borderRadius: BorderRadius.circular(
-                      10), // Adjust the corner radius as needed
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 2),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: "Search",
-                      border: InputBorder.none,
-                      prefixIcon: Icon(Icons.search),
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              BannerWidget(),
+              SizedBox(height: 11.0),
+              Padding(
+                padding: EdgeInsets.fromLTRB(20, 10, 15, 0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 168, 168, 168),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 2),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintText: "Search",
+                        border: InputBorder.none,
+                        prefixIcon: Icon(Icons.search),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(height: 2.0),
-            SingleChildScrollView(
-              child: SizedBox(
-                height: 320,
-                child: GridView.builder(
-                  physics: NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                  ),
-                  itemCount: HomeDataList.length,
-                  itemBuilder: (context, index) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                          child: Container(
-                            height: 100,
-                            width: 100,
-                            decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 241, 245, 241),
-                              borderRadius: BorderRadius.circular(19),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Color.fromARGB(255, 187, 186, 186)
-                                      .withOpacity(0.5),
-                                  spreadRadius: 5,
-                                  blurRadius: 20,
-                                  offset: Offset(
-                                      5, 5), // changes position of shadow
-                                ),
-                              ],
-                            ),
-                            child: InkWell(
-                              onTap: () {
-                                switch (_currentIndex) {
-                                  case 0:
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => Seeds()));
-                                  case 1:
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => Nutrition()));
-                                  case 2:
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => Hardware()));
-                                  case 3:
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => Agrochemical()));
-                                  case 4:
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => Agrochemical()));
-                                  case 5:
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => Seeds()));
-                                  case 6:
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => Seeds()));
-                                  case 7:
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => Seeds()));
-                                  case 8:
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => Seeds()));
-                                  case 9:
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => Seeds()));
-                                  case 10:
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => Seeds()));
-                                  case 11:
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => Seeds()));
-                                }
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (_) =>  HomeDataList(
-                                //               currentpage: index,
-                                //             )));
-                              },
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    height: 10,
+              SizedBox(height: 15.0),
+              SingleChildScrollView(
+                child: SizedBox(
+                  height: 320,
+                  child: GridView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                    ),
+                    itemCount: HomeDataList.length,
+                    itemBuilder: (context, index) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                            child: Container(
+                              height: 90,
+                              width: 92,
+                              decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 241, 245, 241),
+                                borderRadius: BorderRadius.circular(19),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Color.fromARGB(255, 187, 186, 186)
+                                        .withOpacity(0.5),
+                                    spreadRadius: 5,
+                                    blurRadius: 20,
+                                    offset: Offset(
+                                      5,
+                                      5,
+                                    ), // changes position of shadow
                                   ),
-                                  Image(
-                                    image: AssetImage(
-                                        HomeDataList[index]['imagepath']),
-                                    height: 50,
-                                    // MediaQuery.of(context).size.height / 9,
-                                    width: 50,
-                                    //  MediaQuery.of(context).size.width / 4,
-                                  ),
-                                  Text(
-                                    HomeDataList[index]['name'],
-                                    style: TextStyle(
+                                ],
+                              ),
+                              child: InkWell(
+                                onTap: () {
+                                  switch (index) {
+                                    case 0:
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => SeedsScreen()),
+                                      );
+                                      break;
+                                    case 1:
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => Nutrition()),
+                                      );
+                                      break;
+                                    case 2:
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => Hardware()),
+                                      );
+                                      break;
+                                    case 3:
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => Agrochemical()),
+                                      );
+                                      break;
+                                    case 4:
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => OrganicFertilizer()),
+                                      );
+                                      break;
+                                    case 5:
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => Insecticide()),
+                                      );
+                                      break;
+                                    case 6:
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) =>SeedsScreen()),
+                                      );
+                                      break;
+                                    case 7:
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => Nutrition()),
+                                      );
+                                      break;
+                                    case 8:
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) =>SeedsScreen()),
+                                      );
+                                      break;
+
+                                    default:
+                                      break;
+                                  }
+                                },
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Image(
+                                      image: AssetImage(
+                                          HomeDataList[index]['imagepath']),
+                                      height: 50,
+                                      width: 50,
+                                    ),
+                                    Text(
+                                      HomeDataList[index]['name'],
+                                      style: TextStyle(
                                         fontSize: 11,
-                                        // MediaQuery.of(context).size.height *
-                                        //     0.023,
                                         fontWeight: FontWeight.bold,
                                         height: 1,
-                                        color: Colors.green),
-                                  )
-                                ],
+                                        color: Colors.green,
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
-                    );
-                  },
+                        ],
+                      );
+                    },
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildBannerRow() {
-    return Container(
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _buildBannerImage(_bannerImages[_currentIndex]),
-            SizedBox(width: 10.0),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildBannerImage(String imagePath) {
-    return Container(
-      margin: EdgeInsets.only(left: 10.0),
-      child: Image.asset(
-        imagePath,
-        height: 81.0,
-        width: 306.0,
-        fit: BoxFit.cover,
       ),
     );
   }

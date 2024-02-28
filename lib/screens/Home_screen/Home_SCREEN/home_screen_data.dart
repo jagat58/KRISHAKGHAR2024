@@ -25,7 +25,7 @@ List<Map> HomeDataList = [
   },
   {
     'imagepath': 'assets/4.png',
-    'name': 'Agrochemical',
+    'name': 'Insecticide',
   },
   {
     'imagepath': 'assets/5.png',

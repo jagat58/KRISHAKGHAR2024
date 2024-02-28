@@ -20,7 +20,7 @@ class _MarketSellFormState extends State<MarketSellForm> {
   String? imagePath;
 
   final List<String> categories = ['Fruit', 'Vegetables'];
-  final List<String> units = ['Kg', 'Gota'];
+  final List<String> units = ['Kg', 'Gota','Darjen'];
 
   @override
   Widget build(BuildContext context) {
@@ -105,33 +105,7 @@ class _MarketSellFormState extends State<MarketSellForm> {
                       ],
                     ),
                   ),
-                  SizedBox(width: 16.0),
-                  Flexible(
-                    flex: 1,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'To:',
-                          style: TextStyle(fontSize: 18.0),
-                        ),
-                        SizedBox(height: 8.0),
-                        Container(height: 55,
-                          child: TextFormField(
-                            onChanged: (value) {
-                              setState(() {
-                                priceTo = value;
-                              });
-                            },
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                
                   SizedBox(width: 16.0),
                   Flexible(
                     flex: 1,
@@ -193,7 +167,7 @@ class _MarketSellFormState extends State<MarketSellForm> {
               Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 10, 5, 5),
+                    padding: const EdgeInsets.fromLTRB(75, 10, 5, 5),
                     child: InkWell(
                       onTap: () async {
                         DateTime? pickedDate = await showDatePicker(
@@ -213,7 +187,7 @@ class _MarketSellFormState extends State<MarketSellForm> {
                         padding:
                             EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
+                          border: Border.all(color: Colors.green),
                           borderRadius: BorderRadius.circular(5.0),
                         ),
                         child: Row(
@@ -234,52 +208,52 @@ class _MarketSellFormState extends State<MarketSellForm> {
                       ),
                     ),
                   ),
-                  Text(
-                    "To",
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(7, 10, 0, 5),
-                    child: InkWell(
-                      onTap: () async {
-                        DateTime? pickedDate = await showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime.now(),
-                          lastDate: DateTime(2101),
-                        );
+                  // Text(
+                  //   "To",
+                  //   style: TextStyle(fontSize: 20),
+                  // ),
+                  // Padding(
+                  //   padding: const EdgeInsets.fromLTRB(7, 10, 0, 5),
+                  //   child: InkWell(
+                  //     onTap: () async {
+                  //       DateTime? pickedDate = await showDatePicker(
+                  //         context: context,
+                  //         initialDate: DateTime.now(),
+                  //         firstDate: DateTime.now(),
+                  //         lastDate: DateTime(2101),
+                  //       );
         
-                        if (pickedDate != null && pickedDate != selectedDate) {
-                          setState(() {
-                            selectedDate = pickedDate;
-                          });
-                        }
-                      },
-                      child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          borderRadius: BorderRadius.circular(5.0),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              selectedDate == null
-                                  ? 'Select Date'
-                                  : '${selectedDate!.day}/${selectedDate!.month}/${selectedDate!.year}',
-                              style: TextStyle(fontSize: 15.0),
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Icon(Icons.calendar_today),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
+                  //       if (pickedDate != null && pickedDate != selectedDate) {
+                  //         setState(() {
+                  //           selectedDate = pickedDate;
+                  //         });
+                  //       }
+                  //     },
+                  //     child: Container(
+                  //       padding:
+                  //           EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  //       decoration: BoxDecoration(
+                  //         border: Border.all(color: Colors.grey),
+                  //         borderRadius: BorderRadius.circular(5.0),
+                  //       ),
+                  //       child: Row(
+                  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //         children: [
+                  //           Text(
+                  //             selectedDate == null
+                  //                 ? 'Select Date'
+                  //                 : '${selectedDate!.day}/${selectedDate!.month}/${selectedDate!.year}',
+                  //             style: TextStyle(fontSize: 15.0),
+                  //           ),
+                  //           SizedBox(
+                  //             width: 5,
+                  //           ),
+                  //           Icon(Icons.calendar_today),
+                  //         ],
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
               SizedBox(height: 16.0),

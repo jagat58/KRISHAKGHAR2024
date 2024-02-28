@@ -7,7 +7,70 @@ class NewsScreen extends StatelessWidget {
     return Scaffold(
        body: Stack(
           children: [
-            Container(
+           
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10,80, 10, 10),
+              child: SingleChildScrollView(
+                      child: Column(
+                        children: List.generate(10, (index) {
+              return Card(
+                elevation: 3,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                margin: EdgeInsets.all(12.0),
+                color: Color.fromARGB(255, 255, 255, 255),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width - 24,
+                  height: 280,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width - 24,
+                        height: 180,
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 135, 131, 131),
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12.0),
+                          child: Image.network(
+                            'https://www.adb.org/sites/default/files/styles/content_media/public/content-media/172041-gansu-leading-agriculture-enterprise.jpeg?itok=ecTRbiNK',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Text(
+                          'Headline $index', 
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Text(
+                          '14 Falgun', 
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: const Color.fromARGB(255, 116, 116, 116),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+                        }),
+                      ),
+                    ),
+            ),
+       Container(
               height: MediaQuery.of(context).size.height * 0.10,
               width: MediaQuery.of(context).size.width,
               color: Color.fromARGB(255, 2, 141, 7),
@@ -75,8 +138,7 @@ class NewsScreen extends StatelessWidget {
                 ),
               ),
             ),
-          ]
-       )
+       ])
     );
   }
 }

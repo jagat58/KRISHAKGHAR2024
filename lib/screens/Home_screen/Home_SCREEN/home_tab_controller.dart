@@ -14,7 +14,7 @@ class _HomeTabContainerScreenState extends State<HomeTabContainerScreen> {
       length: 2,
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: Color.fromARGB(255, 241, 245, 241),
+          backgroundColor:  Color.fromARGB(255, 208, 208, 208),
           body: Column(
             children: [
               _buildHead(),
